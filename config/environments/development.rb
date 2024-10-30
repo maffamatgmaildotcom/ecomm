@@ -18,7 +18,7 @@ Rails.application.configure do
   config.server_timing = true
 
   # as per devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -66,7 +66,7 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
-  #config.assets.compile = true
+  # config.assets.compile = true
   config.assets.digest = true
 
   # Raises error for missing translations.

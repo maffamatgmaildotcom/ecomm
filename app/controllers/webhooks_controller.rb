@@ -21,7 +21,7 @@ class WebhooksController < ApplicationController
 
     case event.type
 
-    when 'checkout.session.completed'
+    when "checkout.session.completed"
       session = event.data.object
       shipping_details = session["shipping_details"]
       puts "Session: #{session}"
@@ -33,7 +33,7 @@ class WebhooksController < ApplicationController
       order = Order.create!(customer_email: session["customer_details"]["email"], total: session["amount_total"], address: address, fulfilled: false)
       full_session = Stripe::Checkout::Session.retrieve({
         id: session.id,
-        expand: ['line_items']
+        expand: [ "line_items" ]
       })
       line_items = full_session.line_items
       line_items["data"].each do |item|
@@ -42,22 +42,22 @@ class WebhooksController < ApplicationController
         OrderProduct.create!(order: order, product_id: product_id, quantity: item["quantity"], size: product["metadata"]["size"])
         Stock.find(product["metadata"]["product_stock_id"]).decrement!(:amount, item["quantity"])
       end
-    when 'product.created'
-      puts 'handling product.created event'
-    when 'price.created'
-      puts 'handling price.created event'
-    when 'charge.succeeded'
-      puts 'handling charge.succeeded event'
-    when 'payment_intent.succeeded'
-      puts 'handling payment_intent.succeeded event'
-    when 'payment_intent.created'
-      puts 'handling payment_intent.created event'
-    when 'charge.updated'
-      puts 'handling charge.updated event'
+    when "product.created"
+      puts "handling product.created event"
+    when "price.created"
+      puts "handling price.created event"
+    when "charge.succeeded"
+      puts "handling charge.succeeded event"
+    when "payment_intent.succeeded"
+      puts "handling payment_intent.succeeded event"
+    when "payment_intent.created"
+      puts "handling payment_intent.created event"
+    when "charge.updated"
+      puts "handling charge.updated event"
     else
       puts "Unhandled event type: #{event.type}"
     end
 
-    render json: {message: 'success' }
+    render json: { message: "success" }
   end
 end
