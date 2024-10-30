@@ -63,6 +63,6 @@ end
 gem "devise", "~> 4.9"
 gem "font-awesome-sass", "~> 6.5.1"
 
-gem "stripe", "~> 13.0"
+gem "stripe", "~> 13.1"
 
 gem "pagy", "~> 9.1"
