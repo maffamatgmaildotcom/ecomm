@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     resources :orders
     resources :products do
       resources :stocks
+      collection do
+        post :import
+      end
     end
     resources :categories
   end

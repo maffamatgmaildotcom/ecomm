@@ -10,6 +10,13 @@
     <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+  <div class="flex float-right mt-3">
+    <%= form_tag import_admin_products_path, method: :post, multipart: true, class: "block shadow rounded-md border border-gray-400" do %>
+      <%= file_field_tag :file, accept: "application/zip,application/x-zip-compressed,text/csv" %>
+      <%= submit_tag '⚙️ Import', class: "cursor-pointer bg-blue-600 ml-2 hover:bg-gray-600 text-white py-2 px-4 rounded" %>
+    <% end %>
+  </div>
+
   <div class="flex mt-4 flex-col md:flex-row items-start md:items-center w-full">
     <%= form_with url: admin_products_path, method: :get, class: "flex" do |form| %>
       <%= form.text_field :query, placeholder: "Search", class: "rounded border-gray-500 text-gray-800" %>
@@ -19,7 +26,7 @@
       <%= form.submit "Clear", class: "cursor-pointer bg-gray-500 ml-0 md:ml-2 mt-2 md:mt-0 hover:bg-gray-600 text-white py-2 px-4 rounded" %>
     <% end %>
   </div>
-  
+
   <div class = "flex flex-col w-full">
     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
       <div class="py-2 inline-block min-w-full">
@@ -32,6 +39,15 @@
                 </th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                   Name
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  Category
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  Item Number
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  Year Issued
                 </th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                   Description
@@ -48,13 +64,22 @@
                     <%= p.images.any? ? image_tag(p.images.first.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 underline">
-                    <%= link_to p.name, edit_admin_product_path(p) %>
+                    <%= link_to p.name.split('-')[0], edit_admin_product_path(p) %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 underline">
+                    <%= link_to p.category.name, edit_admin_category_path(p.category) %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                    <%= p.item_number %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                    <%= p.year_issued %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-800">
                     <%= p.description %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                    $<%= (p.price/100.0).to_s %>
+                    <%= humanized_money_with_symbol Money.from_cents(p.price, "USD") %>
                   </td>
                 </tr>
               <% end %>

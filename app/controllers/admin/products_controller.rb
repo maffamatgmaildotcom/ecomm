@@ -4,7 +4,7 @@ class Admin::ProductsController < AdminController
   # GET /admin/products or /admin/products.json
   def index
     if params[:query].present?
-       @pagy, @admin_products = pagy(Product.where("name LIKE ?", "%#{params[:query]}%"))
+       @pagy, @admin_products = pagy(Product.where("name ILIKE ? OR item_number LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%"))
     else
       @pagy, @admin_products = pagy(Product.all)
     end
@@ -62,6 +62,18 @@ class Admin::ProductsController < AdminController
       format.html { redirect_to admin_products_path, status: :see_other, notice: "Product was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    Rails.logger.info "Admin::ProductsController::Import"
+    return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
+    content_type = params[:file].content_type 
+    return redirect_to request.referer, notice: 'Only CSV or zip files allowed' unless ['text/csv', 'application/zip', 'application/x-zip-compressed'].include?(content_type)
+
+    category_id = 1
+    CsvImportService.new.import_products(content_type, params[:file], category_id)
+
+    redirect_to request.referer, notice: 'Import started...'
   end
 
   private

@@ -66,3 +66,7 @@ gem "font-awesome-sass", "~> 6.5.1"
 gem "stripe", "~> 13.0"
 
 gem "pagy", "~> 9.1"
+
+gem "money-rails", "~> 1.15"
+
+gem "rubyzip", "~> 2.3"
