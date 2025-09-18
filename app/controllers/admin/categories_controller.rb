@@ -60,14 +60,14 @@ class Admin::CategoriesController < AdminController
   # import products into this category
   def import_products
     Rails.logger.info "Admin::CategoriesController::ImportProducts"
-    return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
-    content_type = params[:file].content_type 
-    return redirect_to request.referer, notice: 'Only CSV or zip files allowed' unless ['text/csv', 'application/zip', 'application/x-zip-compressed'].include?(content_type)
+    return redirect_to request.referer, notice: "No file added" if params[:file].nil?
+    content_type = params[:file].content_type
+    return redirect_to request.referer, notice: "Only CSV or zip files allowed" unless [ "text/csv", "application/zip", "application/x-zip-compressed" ].include?(content_type)
 
     category_id = params[:category_id].to_i
     CsvImportService.new.import_products(content_type, params[:file], category_id)
 
-    redirect_to request.referer, notice: 'Import started...'
+    redirect_to request.referer, notice: "Import started..."
   end
 
   private

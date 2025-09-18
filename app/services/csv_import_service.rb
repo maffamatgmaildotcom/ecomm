@@ -54,7 +54,7 @@ class CsvImportService
         end
       end
     end
-    #attach_no_image_to_products(no_image_tmp_file, category_id) if no_image_tmp_file
+    # attach_no_image_to_products(no_image_tmp_file, category_id) if no_image_tmp_file
   end
 
   def create_no_image_file(entry)
