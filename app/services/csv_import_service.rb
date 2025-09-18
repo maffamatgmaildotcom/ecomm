@@ -69,7 +69,7 @@ class CsvImportService
     basename = File.basename(entry.name, File.extname(entry.name)) # ditch the extension
     parts = basename.split("_")
     item = parts[0]
-    item = item.sub("-", ".") if item[ 0..1 ] == "56" && item[ 7 ] != '-'
+    item = item.sub("-", ".") if item[0..1] == "56" && item[7] != "-"
     return if item.nil?
 
     product = Product.where(item_number: item).first
