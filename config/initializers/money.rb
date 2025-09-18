@@ -1,4 +1,5 @@
 # encoding: UTF-8
+
 Money.locale_backend = :currency
 
 MoneyRails.configure do |config|
@@ -84,7 +85,7 @@ MoneyRails.configure do |config|
   }
 
   config.no_cents_if_whole = false
-  
+
   # Set whether an error should be raised when parsing money values
   # This includes assigning to a monetized field with the wrong currency
   # Default value is false
