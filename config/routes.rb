@@ -3,11 +3,12 @@ Rails.application.routes.draw do
     resources :orders
     resources :products do
       resources :stocks
+    end
+    resources :categories do
       collection do
-        post :import
+        post :import_products
       end
     end
-    resources :categories
   end
   devise_for :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

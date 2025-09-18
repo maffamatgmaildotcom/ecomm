@@ -1,4 +1,4 @@
-<h1>Product show page</h1>
+<h1><% @product.name %></h1>
 <div class="flex justify-center gap-20 py-10">
   <div class ="flex flex-wrap max-w-lg">
     <% @product.images.each do |image| %>
@@ -7,7 +7,7 @@
   </div>
   <div data-controller="products" data-products-product-value="<%= @product.to_json %>" class="flex flex-col items-start max-w-sm">
     <h1 class="font-bold text-4xl uppercase"><%= @product.name %></h1>
-    <p class="text-2xl mt-4"><%= humanized_money_with_symbol Money.from_cents(@product.price, "USD") %></p>
+    <p class="text-2xl mt-4"><%= humanized_money_with_symbol Money.from_cents(@product.price, "USD") unless @product.price.nil? %></p>     
     <p class="text-md py-8"><%= @product.description %></p>
     <p class="text-md py-8"><%= @product.item_number %></p>
     <% if @product.stocks.count > 0 %>

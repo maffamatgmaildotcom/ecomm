@@ -1,8 +1,22 @@
 <div class="mx-auto md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">Editing category</h1>
 
-  <%= render "form", admin_category: @admin_category %>
+  <div>
+    <div class="block shadow rounded-md border border-none outline-none px-3 py-2 mt-2 w-md">
+      <h2 class="font-bold text-xl mt-2">Import Products</h2>
+      <%= form_with url: import_products_admin_categories_path, method: :post, multipart: true, class: "block shadow rounded-md border border-gray-400 outline-none px-4 py-2 mt-2" do |f| %>
+        <%= f.file_field :file, accept: "application/zip,application/x-zip-compressed,text/csv" %>
+        <%= f.hidden_field :category_id, value: @admin_category.id %>
+        <%= f.submit '⚙️ Import', class: "cursor-pointer bg-blue-600 ml-2 hover:bg-gray-600 text-white py-2 px-4 rounded" %>
+      <% end %>    
+    </div>
+    <div>
+      <%= render "form", admin_category: @admin_category %>
+      <%= link_to "Show this category", [:admin, @admin_category], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Back to categories", admin_categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100   inline-block font-medium" %>
+    </div>
+  </div>
 
-  <%= link_to "Show this category", [:admin, @admin_category], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to categories", admin_categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
 </div>
+

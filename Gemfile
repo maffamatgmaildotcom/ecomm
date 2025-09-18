@@ -1,7 +1,7 @@
  source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1.1"
+gem "rails", "~> 8.0.2.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use pg as the database for Active Record
@@ -9,17 +9,17 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+gem "importmap-rails", "~> 2.1.0"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 3.3.1"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # for AWS S3
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3", "~> 1.177.0", require: false
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -40,7 +40,7 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", "~> 1.10.0", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
@@ -61,11 +61,11 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "font-awesome-sass", "~> 6.5.1"
+gem "font-awesome-sass", "~> 6.7.2"
 
-gem "stripe", "~> 13.0"
+gem "stripe", "~> 13.3.0"
 
-gem "pagy", "~> 9.1"
+gem "pagy", "~> 9.3.3"
 
 gem "money-rails", "~> 1.15"
 

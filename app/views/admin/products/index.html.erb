@@ -10,13 +10,6 @@
     <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div class="flex float-right mt-3">
-    <%= form_tag import_admin_products_path, method: :post, multipart: true, class: "block shadow rounded-md border border-gray-400" do %>
-      <%= file_field_tag :file, accept: "application/zip,application/x-zip-compressed,text/csv" %>
-      <%= submit_tag '⚙️ Import', class: "cursor-pointer bg-blue-600 ml-2 hover:bg-gray-600 text-white py-2 px-4 rounded" %>
-    <% end %>
-  </div>
-
   <div class="flex mt-4 flex-col md:flex-row items-start md:items-center w-full">
     <%= form_with url: admin_products_path, method: :get, class: "flex" do |form| %>
       <%= form.text_field :query, placeholder: "Search", class: "rounded border-gray-500 text-gray-800" %>
