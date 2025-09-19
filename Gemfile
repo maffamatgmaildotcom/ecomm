@@ -69,4 +69,4 @@ gem "pagy", "~> 9.3.3"
 
 gem "money-rails", "~> 1.15"
 
-gem "rubyzip", "~> 2.3"
+gem "rubyzip", "~> 3.1"
