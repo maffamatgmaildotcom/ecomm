@@ -19,7 +19,7 @@ gem "tailwindcss-rails", "~> 3.3.1"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # for AWS S3
-gem "aws-sdk-s3", "~> 1.177.0", require: false
+gem "aws-sdk-s3", "~> 1.199.1", require: false
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
